@@ -1,4 +1,4 @@
-# bloom-microservices-checker
+# stellar-balances-checker
 
 ## Project setup
 ```
