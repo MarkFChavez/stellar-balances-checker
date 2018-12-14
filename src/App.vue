@@ -20,8 +20,8 @@ export default {
   components: { BalanceChecker },
   data () {
     return {
+      appTitle: process.env.VUE_APP_TITLE,
       address: process.env.VUE_APP_STELLAR_ADDRESS,
-      balances: []
     }
   },
 }
