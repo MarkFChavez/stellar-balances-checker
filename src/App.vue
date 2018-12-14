@@ -7,8 +7,12 @@
 
     <div>
       <BalanceChecker 
-        title="Bloom Trade (Staging)" 
-        :address="address" />
+        :title="btTitle" 
+        :address="btAddress" />
+
+      <BalanceChecker 
+        :title="palawanTitle" 
+        :address="palawanAddress" />
     </div>
   </div>
 </template>
@@ -21,7 +25,10 @@ export default {
   data () {
     return {
       appTitle: process.env.VUE_APP_TITLE,
-      address: process.env.VUE_APP_STELLAR_ADDRESS,
+      btTitle: process.env.VUE_APP_BT,
+      btAddress: process.env.VUE_APP_BT_STELLAR_ADDRESS,
+      palawanTitle: process.env.VUE_APP_TELLER_PALAWAN,
+      palawanAddress: process.env.VUE_APP_TELLER_PALAWAN_STELLAR_ADDRESS,
     }
   },
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="border-l-4 border-blue mb-2 p-4 bg-blue-lightest shadow">
-    <div class="flex justify-between mb-6">
+  <div class="border-l-4 border-blue mb-6 p-4 bg-blue-lightest shadow">
+    <div class="flex justify-between mb-6 pb-3 border-b border-black">
       <span class="text-lg uppercase"> {{title}} </span>
-      <span class="text-lg"> {{shortAddress}} </span>
+      <span class="text-lg font-semibold"> {{address | shortify}} </span>
     </div>
 
     <div v-if="loading">
@@ -10,13 +10,15 @@
     </div>
 
     <ul v-else class="list-reset">
-      <li v-for="(b, i) in assetBalances" :key="i">
+      <li class="mb-4" v-for="(b, i) in assetBalances" :key="i">
         <div class="flex">
           <div class="w-24">
-            <span> {{b.asset_code}} </span>
+            <span class="rounded bg-black text-white px-2 py-1"> {{b.asset_code}} </span> 
           </div>
 
-          <span> {{b.balance | formatMoney}} </span>
+          <div> 
+            <span class="tracking-wide"> {{b.balance | formatMoney}} </span> 
+          </div>
         </div>
       </li>
     </ul>
@@ -64,16 +66,16 @@ export default {
         return balance.asset_type !== "native"
       })
     },
-    shortAddress () {
-      let head = this.address.slice(0, 4)
-      let tail = this.address.slice(-4)
-
-      return `${head}...${tail}`
-    }
   },
   filters: {
     formatMoney (number) {
       return numeral(number).format("0,0.00")
+    },
+    shortify (address) {
+      let head = address.slice(0, 4)
+      let tail = address.slice(-4)
+
+      return `${head}...${tail}`
     }
   }
 }
