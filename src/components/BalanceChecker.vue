@@ -10,10 +10,11 @@
     </div>
 
     <ul v-else class="list-reset">
-      <li class="mb-4" v-for="(b, i) in assetBalances" :key="i">
+      <li class="mb-4 py-1" v-for="(b, i) in assetBalances" :key="i">
         <div class="flex">
-          <div class="w-24">
-            <span class="rounded bg-black text-white px-2 py-1"> {{b.asset_code}} </span> 
+          <div class="w-64">
+            <span class="rounded bg-black text-white px-2 mr-2"> {{b.asset_code}} </span> 
+            <span class="rounded bg-grey-light text-black px-2"> {{b.asset_issuer | shortify}} </span> 
           </div>
 
           <div> 
@@ -28,7 +29,7 @@
 <script>
 import numeral from "numeral"
 
-const BASE_URL = "https://horizon-testnet.stellar.org"
+const BASE_URL = process.env.VUE_APP_STELLAR_URL
 
 export default {
   data () {

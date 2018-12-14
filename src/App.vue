@@ -6,29 +6,25 @@
     </header>
 
     <div>
-      <BalanceChecker 
-        :title="btTitle" 
-        :address="btAddress" />
-
-      <BalanceChecker 
-        :title="palawanTitle" 
-        :address="palawanAddress" />
+      <BalanceChecker
+        v-for="(d, i) in data"
+        :key="i"
+        :title="d.title" 
+        :address="d.address" />
     </div>
   </div>
 </template>
 
 <script>
 import BalanceChecker from "@/components/BalanceChecker"
+import data from "./fixtures.js"
 
 export default {
   components: { BalanceChecker },
   data () {
     return {
       appTitle: process.env.VUE_APP_TITLE,
-      btTitle: process.env.VUE_APP_BT,
-      btAddress: process.env.VUE_APP_BT_STELLAR_ADDRESS,
-      palawanTitle: process.env.VUE_APP_TELLER_PALAWAN,
-      palawanAddress: process.env.VUE_APP_TELLER_PALAWAN_STELLAR_ADDRESS,
+      data: data,
     }
   },
 }
