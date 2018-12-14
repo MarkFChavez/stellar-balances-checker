@@ -1,5 +1,5 @@
 <template>
-  <div class="border-l-4 border-blue mb-2 px-4 py-1">
+  <div class="border-l-4 border-blue mb-2 p-4 bg-blue-lightest shadow">
     <div class="flex justify-between mb-6">
       <span class="text-lg uppercase"> {{title}} </span>
       <span class="text-lg"> {{shortAddress}} </span>
@@ -16,7 +16,7 @@
             <span> {{b.asset_code}} </span>
           </div>
 
-          <span> {{b.balance}} </span>
+          <span> {{b.balance | formatMoney}} </span>
         </div>
       </li>
     </ul>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import numeral from "numeral"
+
 const BASE_URL = "https://horizon-testnet.stellar.org"
 
 export default {
@@ -67,6 +69,11 @@ export default {
       let tail = this.address.slice(-4)
 
       return `${head}...${tail}`
+    }
+  },
+  filters: {
+    formatMoney (number) {
+      return numeral(number).format("0,0.00")
     }
   }
 }
