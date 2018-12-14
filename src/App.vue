@@ -1,31 +1,28 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <header class="p-4 mb-8 border-b-2 border-black text-center">
+      <h1 class="font-normal">Bloom Microservices Checker</h1>
+      <p> Check out how much BTC and PHP tokens we have in Stellar. </p>
+    </header>
+
+    <div>
+      <BalanceChecker 
+        title="Bloom Trade (Staging)" 
+        :address="address" />
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+import BalanceChecker from "@/components/BalanceChecker"
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+export default {
+  components: { BalanceChecker },
+  data () {
+    return {
+      address: process.env.VUE_APP_STELLAR_ADDRESS,
+      balances: []
+    }
+  },
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
