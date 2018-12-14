@@ -14,7 +14,7 @@
         <div class="flex">
           <div class="w-64">
             <span class="rounded bg-black text-white px-2 mr-2"> {{b.asset_code}} </span> 
-            <span class="rounded bg-grey-light text-black px-2"> {{b.asset_issuer | shortify}} </span> 
+            <span v-if="b.asset_issuer" class="rounded bg-grey-light text-black px-2"> {{b.asset_issuer | shortify}} </span> 
           </div>
 
           <div> 
@@ -63,8 +63,12 @@ export default {
   },
   computed: {
     assetBalances () {
-      return this.balances.filter(function(balance) {
-        return balance.asset_type !== "native"
+      return this.balances.map(function(balance) {
+        if (balance.asset_type !== "native") {
+          return balance
+        }
+
+        return { asset_code: "XLM", ...balance }
       })
     },
   },
