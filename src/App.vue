@@ -2,7 +2,7 @@
   <div>
     <header class="p-4 mb-8 border-b-2 border-black text-center">
       <h1 class="font-normal">{{appTitle}}</h1>
-      <p> Check out how much BTC and PHP tokens we have in Stellar. </p>
+      <p> Check out how much Stellar tokens your services have! </p>
     </header>
 
     <div>
